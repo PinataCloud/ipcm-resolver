@@ -2,12 +2,12 @@
 pragma solidity ^0.8.13;
 
 import {Script, console} from "forge-std/Script.sol";
-import {HybridResolver} from "../src/IPCMResolver.sol";
+import {IPCMResolver} from "../src/IPCMResolver.sol";
 import {ENS} from "../lib/ens-contracts/contracts/registry/ENS.sol";
 import {INameWrapper} from "../lib/ens-contracts/contracts/wrapper/INameWrapper.sol";
 
 contract DeployResolver is Script {
-    HybridResolver public resolver;
+    IPCMResolver public resolver;
 
     function setUp() public {}
 
@@ -20,7 +20,7 @@ contract DeployResolver is Script {
         address signer = vm.envAddress("SIGNER");
         address owner = vm.envAddress("OWNER");
 
-        resolver = new HybridResolver(ens, nameWrapper, url, signer, owner);
+        resolver = new IPCMResolver(ens, nameWrapper, url, signer, owner);
 
         vm.stopBroadcast();
     }

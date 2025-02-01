@@ -28,7 +28,7 @@ interface IResolverService {
 /**
  * A hybrid onchain/offchain ENS resolver contract for flexible record management.
  */
-contract HybridResolver is
+contract IPCMResolver is
     Multicallable,
     ABIResolver,
     AddrResolver,
@@ -108,7 +108,7 @@ contract HybridResolver is
             address(this),
             urls,
             callData,
-            HybridResolver.resolveWithProof.selector,
+            IPCMResolver.resolveWithProof.selector,
             abi.encode(callData, address(this))
         );
     }

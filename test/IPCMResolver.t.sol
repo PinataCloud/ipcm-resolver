@@ -2,13 +2,13 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import {HybridResolver} from "../src/IPCMResolver.sol";
+import {IPCMResolver} from "../src/IPCMResolver.sol";
 import "../lib/ens-contracts/contracts/registry/ENS.sol";
 import "../lib/ens-contracts/contracts/wrapper/INameWrapper.sol";
 import "../lib/ens-contracts/contracts/registry/ENSRegistry.sol";
 
 contract IPCMResolverTest is Test {
-    HybridResolver public resolver;
+    IPCMResolver public resolver;
     ENS public ens;
     INameWrapper public nameWrapper;
 
@@ -19,7 +19,7 @@ contract IPCMResolverTest is Test {
     function setUp() public {
         ens = new ENSRegistry(); // Use concrete implementation instead of interface
         nameWrapper = INameWrapper(address(0x789)); // Mock wrapper
-        resolver = new HybridResolver(ens, nameWrapper, url, signer, owner);
+        resolver = new IPCMResolver(ens, nameWrapper, url, signer, owner);
     }
 
     function testSetUrl() public {
