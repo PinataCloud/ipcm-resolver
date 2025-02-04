@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
 import {Test, console} from "forge-std/Test.sol";
 import {IPCMResolver} from "../src/IPCMResolver.sol";
@@ -15,11 +15,13 @@ contract IPCMResolverTest is Test {
     address signer = address(0x123);
     address owner = address(0x456);
     string url = "https://example.com";
+    address publicResolver = address(0x321);
+    address legacyResolver = address(0x654);
 
     function setUp() public {
         ens = new ENSRegistry(); // Use concrete implementation instead of interface
         nameWrapper = INameWrapper(address(0x789)); // Mock wrapper
-        resolver = new IPCMResolver(ens, nameWrapper, url, signer, owner);
+        resolver = new IPCMResolver(ens, nameWrapper, url, signer, owner, publicResolver, legacyResolver);
     }
 
     function testSetUrl() public {
